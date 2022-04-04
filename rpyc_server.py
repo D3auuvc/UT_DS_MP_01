@@ -214,8 +214,10 @@ class MonitorService(rpyc.Service):
         :param t    : time for setting upper bound of CS holding time
         :return     : Returns nothing
         """
+        print(f'Receive command "time-cs {t}"')
         for n in self.nodes:
             n.cst = randint(10, t)
+            print(f'change node {n.id} time-out for possessing CS to: {n.cst}')
 
     def exposed_update_pt(self, t):
         """
@@ -224,8 +226,11 @@ class MonitorService(rpyc.Service):
         :param t    : time for setting time upper bound for switching status to 'WANTED'
         :return     : Returns nothing
         """
+        
+        print(f'Receive command "time-p {t}"')
         for n in self.nodes:
             n.pt = randint(5, t)
+            print(f'change node {n.id} time-out to: {n.pt}')
 
     def exposed_show_list(self):
         """
@@ -233,6 +238,7 @@ class MonitorService(rpyc.Service):
                 
         :return     : Returns nothing
         """
+        print(f'Receive command "list"')
         for n in self.nodes:
             print(f'{n.id}, {n.status}')
 
